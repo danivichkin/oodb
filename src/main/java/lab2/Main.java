@@ -23,17 +23,17 @@ public class Main {
                 System.out.println("Input name: ");
                 String name = in.next();
                 UserService.findUserByName(users, name);
-                    break;
+                break;
             case 2:
                 System.out.println("Input surname: ");
                 String surname = in.next();
                 UserService.findUserBySurname(users, surname);
-                    break;
+                break;
             case 3:
                 System.out.println("Input phone: ");
                 String phone = in.next();
                 UserService.findUserByPhoneNumber(users, phone);
-                     break;
+                break;
         }
 
         User user = UserService.findUserByName(users, "Edik");
@@ -46,15 +46,20 @@ public class Main {
             users.add(user);
         }
         SaveDB.saveUserList(users);
+
+
+        UserService.sortUsersByLengthOfName();
     }
 
     private static ArrayList<User> addUsers(){
-        User userOleg = new User("Oleg", "Semivrajnov", "+79049335772", "1999/23/08");
+        User userOleg = new User("Olega", "Semivrajnov", "+79049335772", "1999/23/08");
         User userDany = new User("Dany", "Baev", "+7124322552", "2001/09/09");
         ArrayList<User> users = new ArrayList<User>();
         users.add(userDany);
         users.add(userOleg);
         return users;
     }
+
+
 
 }

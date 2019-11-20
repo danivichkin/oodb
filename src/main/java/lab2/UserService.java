@@ -1,7 +1,12 @@
 package lab2;
 
+import com.google.gson.internal.$Gson$Preconditions;
 import lab1.User;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class UserService {
@@ -45,4 +50,17 @@ public class UserService {
         return result;
     }
 
+    public static void sortUsersByLengthOfName() throws IOException {
+        List<User> users = LoadDB.loadUserList();
+        List<String> sortedUsers = new ArrayList<>();
+        System.out.println("Names was printed by length");
+        for (int i = 0; i < users.size(); i++) {
+            User user = users.get(i);
+            sortedUsers.add(user.getName());
+        }
+        Collections.sort(sortedUsers, Collections.reverseOrder());
+        System.out.println(sortedUsers);
+    }
+
 }
+

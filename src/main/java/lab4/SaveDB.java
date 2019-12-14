@@ -9,21 +9,25 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public class SaveDB {
+class SaveDB {
 
-    public static void saveUserList(List<User> users, Connection connection) throws SQLException{
-        if (users != null && users.size()>0){
+    static void saveUserList(List<User> users, Connection connection) throws SQLException{
+
+        int count = 0;
+
+        for (int i = 0; i <= users.size()-1; i++) {
             Gson gson = new Gson();
-            String userAsJson = gson.toJson(users);
+            String userAsJson = gson.toJson(users.get(i));
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "insert into jtest (connect , connectb) values (cast (? as json)  )"
+                    "insert into oodb (json , jsonb) values (cast (? as json), cast(? as json))"
             );
             preparedStatement.setString(1, userAsJson);
-            preparedStatement.setString(1, userAsJson); //TODO
+            preparedStatement.setString(2, userAsJson);
 
-            int count = preparedStatement.executeUpdate();
-            System.out.println(count + "records added");
+            count = i;
+            preparedStatement.executeUpdate();
             preparedStatement.close();
         }
+        System.out.println(count + " records added");
     }
 }

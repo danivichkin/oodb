@@ -20,7 +20,7 @@ public class LoadFromDB {
     public static WebSite load() throws IOException {
         WebSite webSite = null;
         String websiteStr = "";
-        File file = new File("bank.json");
+        File file = new File("website.json");
 
         if (file.exists()) {
             websiteStr = new String(Files.readAllBytes(file.toPath()));
@@ -29,16 +29,17 @@ public class LoadFromDB {
         return webSite;
     }
 
+    //json
     public static List<User> loadPersonList(Connection connection) throws JsonSyntaxException, SQLException {
         String pStr = "";
 
         PreparedStatement statement =
-                connection.prepareStatement("select contentb from jtest ");
+                connection.prepareStatement("select json from oodb ");
 
         ResultSet resultSet = statement.executeQuery();
 
         while (resultSet.next()) {
-            pStr = resultSet.getString("contentb");
+            pStr = resultSet.getString("json");
             System.out.println(pStr);
         }
 
@@ -50,7 +51,7 @@ public class LoadFromDB {
 
 
         statement =
-                connection.prepareStatement("select contentb->0 as c from jtest ");
+                connection.prepareStatement("select json->0 as c from oodb ");
 
         resultSet = statement.executeQuery();
 

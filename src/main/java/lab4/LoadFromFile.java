@@ -26,10 +26,10 @@ public class LoadFromFile {
 
     public static List<User> loadPersonList() throws IOException {
         String pStr = "";
-        File file = new File("users.json");
+        File file = new File("website.json");
         if (file.exists()){
             pStr = new String(Files.readAllBytes(file.toPath()));
-        } else System.out.println("File users.json not found!");
+        } else System.out.println("File website.json not found!");
         Gson gson = new Gson();
         User[] plst = gson.fromJson(pStr, User[].class);
 

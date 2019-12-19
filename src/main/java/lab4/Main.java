@@ -20,10 +20,11 @@ public class Main {
         Class.forName("org.postgresql.Driver").getDeclaredConstructor().newInstance();
         Connection connection = setConnection();
 
+        UserService userService = new UserService();
         List<User> users = LoadFromFile.loadPersonList();
-        users.forEach(System.out::println);
 
         SaveDB.saveUserList(users, connection);
+       // UserService.findUserByName(20, connection);
         connection.close();
 
     }

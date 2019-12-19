@@ -19,15 +19,23 @@ class SaveDB {
             Gson gson = new Gson();
             String userAsJson = gson.toJson(users.get(i));
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "insert into oodb (json , jsonb) values (cast (? as json), cast(? as json))"
+                    "insert into oodb (json , jsonb) values (cast (? as json), cast(? as jsonb))"
             );
+
+            long start = System.nanoTime();
             preparedStatement.setString(1, userAsJson);
+            long end = System.nanoTime();
+            System.out.println("JSON: " + (end - start));
+
+            start = System.nanoTime();
             preparedStatement.setString(2, userAsJson);
+            end = System.nanoTime();
+            System.out.println("JSONB: " + (end - start));
 
             count = i;
             preparedStatement.executeUpdate();
             preparedStatement.close();
         }
-        System.out.println(count + " records added");
+        System.out.println((count + 1) + " records added");
     }
 }

@@ -62,6 +62,10 @@ public class LoadFromDB {
 
         return Arrays.asList(plst);
     }
+
+    public static void timeOf(){
+
+    }
 }
 
 

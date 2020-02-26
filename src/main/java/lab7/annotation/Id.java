@@ -1,5 +1,5 @@
+package lab7.annotation;
 
-package lab6.Annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -8,6 +8,6 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ManyToOne {
-    Class rightClass();
+public @interface Id {
+    String name() default "";
 }
